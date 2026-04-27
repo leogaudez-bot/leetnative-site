@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeetNative — AI-Native Engineering</title>
+  <meta name="description" content="From legacy to AI-native. We help companies make their teams, products, and legacy systems AI-ready.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #09090b;
+      --white: #fafafa;
+      --near-white: #e4e4e7;
+      --gray: #a1a1aa;
+      --muted: #71717a;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --surface: #18181b;
+      --warm: #fef3c7;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--near-white);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      font-weight: 400;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 32px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(9, 9, 11, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-right a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-right a:hover { color: var(--white); }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black) !important;
+      background: var(--white);
+      padding: 7px 16px;
+      border-radius: 9999px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    .lang-toggle {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      background: none;
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle:hover { border-color: var(--border-hover); color: var(--white); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 32px 80px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5.5vw, 60px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -1.8px;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--gray);
+      max-width: 520px;
+      line-height: 1.75;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      background: var(--white);
+      padding: 10px 22px;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--gray);
+      background: transparent;
+      padding: 10px 22px;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .btn-ghost:hover { color: var(--white); }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 100px 32px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    section h2 {
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 600;
+      letter-spacing: -1px;
+      color: var(--white);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    .section-intro {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--gray);
+      max-width: 540px;
+      line-height: 1.75;
+      margin-bottom: 48px;
+    }
+
+    /* ─── OFFERS (2 cards) ─── */
+    .offers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .offer {
+      padding: 36px 28px;
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      transition: border-color 0.25s;
+    }
+
+    .offer:hover { border-color: var(--border-hover); }
+
+    .offer-tag {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .offer h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .offer p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ─── SERVICES ─── */
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .service {
+      padding: 28px 28px;
+      background: var(--black);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .service-num {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      min-width: 20px;
+      padding-top: 2px;
+    }
+
+    .service h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+      letter-spacing: -0.2px;
+    }
+
+    .service p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ─── HOW WE WORK ─── */
+    .modes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .mode {
+      padding: 28px 24px;
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      transition: border-color 0.25s;
+    }
+
+    .mode:hover { border-color: var(--border-hover); }
+
+    .mode-tag {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .mode h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .mode p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    /* ─── TEAM ─── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .team-card {
+      padding: 32px 28px;
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      transition: border-color 0.25s;
+    }
+
+    .team-card:hover { border-color: var(--border-hover); }
+
+    .team-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+      letter-spacing: -0.3px;
+    }
+
+    .team-role {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .team-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    .team-bench {
+      margin-top: 16px;
+      padding: 18px 24px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    /* ─── AUDIENCE ─── */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .audience-item {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--near-white);
+      padding: 16px 20px;
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: border-color 0.25s;
+      line-height: 1.5;
+    }
+
+    .audience-item:hover { border-color: var(--border-hover); }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      text-align: center;
+      padding: 140px 32px;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 600;
+      letter-spacing: -1.5px;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+
+    .cta-section p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--gray);
+      margin-bottom: 36px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 32px;
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      max-width: 720px;
+      margin: 0 auto;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-right { display: none; }
+      .offers, .team-grid, .audience-grid { grid-template-columns: 1fr; }
+      .modes { grid-template-columns: 1fr; }
+      section { padding: 72px 24px; }
+      .hero { padding: 96px 24px 56px; }
+    }
+
+    /* ─── BILINGUAL ─── */
+    .bilingual-fr { display: inline; }
+    .bilingual-en { display: none; }
+    body.lang-en .bilingual-fr { display: none; }
+    body.lang-en .bilingual-en { display: inline; }
+
+    .block-fr { display: block; }
+    .block-en { display: none; }
+    body.lang-en .block-fr { display: none; }
+    body.lang-en .block-en { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">LeetNative</a>
+    <div class="nav-right">
+      <a href="#offres">
+        <span class="bilingual-fr">Offres</span>
+        <span class="bilingual-en">Services</span>
+      </a>
+      <a href="#equipe">
+        <span class="bilingual-fr">Équipe</span>
+        <span class="bilingual-en">Team</span>
+      </a>
+      <a href="#contact" class="nav-cta">
+        <span class="bilingual-fr">Parlons-en</span>
+        <span class="bilingual-en">Let's talk</span>
+      </a>
+      <button class="lang-toggle" onclick="document.body.classList.toggle('lang-en')">EN / FR</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">AI-Native Engineering</div>
+
+    <div class="block-fr">
+      <h1>From legacy<br>to AI-native.</h1>
+      <p>On ne rajoute pas juste de l'IA. On transforme vos systèmes et vos équipes pour qu'ils soient AI-native depuis la base. Stratégie, architecture, livraison — on reste impliqué du début à la fin.</p>
+    </div>
+
+    <div class="block-en">
+      <h1>From legacy<br>to AI-native.</h1>
+      <p>We don't just add AI. We transform your legacy systems and teams to be AI-native from the ground up. Strategy, architecture, delivery — we stay hands-on from start to finish.</p>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        <span class="bilingual-fr">Discutons de votre projet</span>
+        <span class="bilingual-en">Let's discuss your project</span>
+        →
+      </a>
+      <a href="#offres" class="btn-ghost">
+        <span class="bilingual-fr">Voir nos offres</span>
+        <span class="bilingual-en">See our services</span>
+      </a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- OFFERS -->
+  <section id="offres">
+    <div class="section-label">01 — Offres</div>
+
+    <div class="block-fr">
+      <h2>Deux axes,<br>un seul objectif.</h2>
+      <p class="section-intro">On combine expertise technique et pratiques d'équipe pour ancrer l'AI-native dans votre organisation. Pas de buzzwords, juste ce qui marche.</p>
+    </div>
+
+    <div class="block-en">
+      <h2>Two axes,<br>one goal.</h2>
+      <p class="section-intro">We combine technical expertise and team practices to make AI-native a reality in your organisation. No buzzwords — just what works.</p>
+    </div>
+
+    <div class="offers">
+      <div class="offer">
+        <div class="offer-tag">01</div>
+        <div class="block-fr">
+          <h3>Product & Tech</h3>
+          <p>Migration AI-native de bout en bout. Architecture, refactoring, intégration d'agents IA, copilots et automation de workflows. De l'audit initial jusqu'à la production.</p>
+        </div>
+        <div class="block-en">
+          <h3>Product & Tech</h3>
+          <p>End-to-end AI-native migration. Architecture, refactoring, AI agents, copilots, and workflow automation. From initial audit through to production-ready delivery.</p>
+        </div>
+      </div>
+      <div class="offer">
+        <div class="offer-tag">02</div>
+        <div class="block-fr">
+          <h3>People & Process</h3>
+          <p>Montée en compétence de vos équipes. Audits, formation pratique, ateliers et conception de modèles opérationnels pour des équipes AI-native au quotidien.</p>
+        </div>
+        <div class="block-en">
+          <h3>People & Process</h3>
+          <p>Team capability building. AI Readiness Audits, practical training, workshops, and operating model design for AI-native daily delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-label">02 — Services</div>
+
+    <div class="block-fr">
+      <h2>Comment on aide.</h2>
+    </div>
+    <div class="block-en">
+      <h2>What we do.</h2>
+    </div>
+
+    <div class="services-list">
+      <div class="service">
+        <span class="service-num">01</span>
+        <div>
+          <div class="block-fr">
+            <h3>Modernisation de produits legacy</h3>
+            <p>Migration vers des stacks modernes et fondations AI-ready. Refactoring, replatforming, décomposition de services, nettoyage d'intégrations.</p>
+          </div>
+          <div class="block-en">
+            <h3>Legacy product modernisation</h3>
+            <p>Migrating to modern tech stacks and AI-ready foundations. Refactoring, replatforming, service decomposition, integration clean-up.</p>
+          </div>
+        </div>
+      </div>
+      <div class="service">
+        <span class="service-num">02</span>
+        <div>
+          <div class="block-fr">
+            <h3>Livraison produit</h3>
+            <p>De l'idée au PoC, du MVP à la production. Livraison pragmatique et décisions produit qui réduisent les retouches plus tard.</p>
+          </div>
+          <div class="block-en">
+            <h3>Product delivery</h3>
+            <p>From ideas to PoC, from MVP to production. Pragmatic delivery and product decisions that reduce rework later.</p>
+          </div>
+        </div>
+      </div>
+      <div class="service">
+        <span class="service-num">03</span>
+        <div>
+          <div class="block-fr">
+            <h3>AI Readiness Audit</h3>
+            <p>Revue complète de vos équipes, processus et architecture pour identifier ce qui bloque l'adoption IA.</p>
+          </div>
+          <div class="block-en">
+            <h3>AI Readiness Audit</h3>
+            <p>Full review of your people, processes, and architecture to identify what's blocking effective AI adoption.</p>
+          </div>
+        </div>
+      </div>
+      <div class="service">
+        <span class="service-num">04</span>
+        <div>
+          <div class="block-fr">
+            <h3>Formation et ateliers</h3>
+            <p>Ateliers pratiques pour vos équipes produit, engineering et leadership. Comment devenir AI-native au quotidien.</p>
+          </div>
+          <div class="block-en">
+            <h3>Team training & workshops</h3>
+            <p>Practical workshops for product, engineering, and leadership teams on becoming AI-native in daily delivery.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- HOW WE WORK -->
+  <section id="comment">
+    <div class="section-label">03 — Comment on travaille</div>
+
+    <div class="block-fr">
+      <h2>Senior, impliqué,<br>et flexible.</h2>
+      <p class="section-intro">Notre modèle : Piotr + Leo + ingénieurs produit IA. On reste au contact du terrain, en combinant stratégie, architecture, livraison et exécution.</p>
+    </div>
+    <div class="block-en">
+      <h2>Senior, hands-on,<br>and flexible.</h2>
+      <p class="section-intro">Our model: Piotr + Leo + AI product engineers. We stay hands-on, combining strategy, architecture, delivery, and execution.</p>
+    </div>
+
+    <div class="modes">
+      <div class="mode">
+        <div class="mode-tag">01</div>
+        <div class="block-fr">
+          <h3>Strike team</h3>
+          <p>Exécution ciblée sur des problèmes spécifiques. On entre, on résout, on part.</p>
+        </div>
+        <div class="block-en">
+          <h3>Strike team</h3>
+          <p>Focused execution on specific problems. We come in, solve it, move on.</p>
+        </div>
+      </div>
+      <div class="mode">
+        <div class="mode-tag">02</div>
+        <div class="block-fr">
+          <h3>Partenaire embed</h3>
+          <p>Livraison long terme. On intègre votre équipe et on livre avec vous.</p>
+        </div>
+        <div class="block-en">
+          <h3>Embedded partner</h3>
+          <p>Long-term delivery. We join your team and deliver alongside you.</p>
+        </div>
+      </div>
+      <div class="mode">
+        <div class="mode-tag">03</div>
+        <div class="block-fr">
+          <h3>Transformation</h3>
+          <p>On aide vos équipes internes à devenir AI-native. Transfert de compétences.</p>
+        </div>
+        <div class="block-en">
+          <h3>Transformation</h3>
+          <p>Helping your internal teams become AI-native. Capability transfer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- TEAM -->
+  <section id="equipe">
+    <div class="section-label">04 — L'équipe</div>
+
+    <div class="block-fr">
+      <h2>Des praticiens,<br>pas des théoriciens.</h2>
+      <p class="section-intro">Deux co-fondateurs senior, plus une équipe de livraison extended. On a testé 20+ outils, géré des orchestration multi-agents, et livré des workflows AI-native pour de vrais clients.</p>
+    </div>
+    <div class="block-en">
+      <h2>Practitioners,<br>not theorists.</h2>
+      <p class="section-intro">Two senior co-founders, plus an extended delivery team. We've tested 20+ tools, managed multi-agent orchestration, and shipped AI-native workflows for real clients.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <h3>Piotr Buda</h3>
+        <div class="team-role">
+          <span class="bilingual-fr">Co-fondateur</span>
+          <span class="bilingual-en">Co-founder</span>
+        </div>
+        <div class="team-desc">
+          <span class="bilingual-fr">Architecture de systèmes IA, agent workflows, debug tooling. Senior product & engineering leadership.</span>
+          <span class="bilingual-en">AI systems architecture, agent workflows, debug tooling. Senior product & engineering leadership.</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <h3>Léo Gaudez</h3>
+        <div class="team-role">
+          <span class="bilingual-fr">Co-fondateur</span>
+          <span class="bilingual-en">Co-founder</span>
+        </div>
+        <div class="team-desc">
+          <span class="bilingual-fr">Pratiques d'ingénierie AI-native, enablement d'équipes, stratégie produit. Fondateur de Gaudez Tech Lab.</span>
+          <span class="bilingual-en">AI-native engineering practices, team enablement, product strategy. Founder of Gaudez Tech Lab.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-bench">
+      <span class="bilingual-fr">Équipe extended : Michał, Antek, Sergii, Volodymyr, Damien</span>
+      <span class="bilingual-en">Extended team: Michał, Antek, Sergii, Volodymyr, Damien</span>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- AUDIENCE -->
+  <section id="audience">
+    <div class="section-label">05 — Pour qui</div>
+
+    <div class="block-fr">
+      <h2>Nos clients idéaux.</h2>
+    </div>
+    <div class="block-en">
+      <h2>Our ideal clients.</h2>
+    </div>
+
+    <div class="audience-grid">
+      <div class="audience-item">
+        <span class="bilingual-fr">Entreprises avec des produits legacy qui ont besoin de modernisation</span>
+        <span class="bilingual-en">Companies with legacy products that need modernisation</span>
+      </div>
+      <div class="audience-item">
+        <span class="bilingual-fr">Leaders produit et engineering qui veulent des équipes AI-ready</span>
+        <span class="bilingual-en">Product and engineering leaders building AI-ready teams</span>
+      </div>
+      <div class="audience-item">
+        <span class="bilingual-fr">Équipes avec architecture obsolète ou stratégie IA floue</span>
+        <span class="bilingual-en">Teams with outdated architecture or unclear AI strategy</span>
+      </div>
+      <div class="audience-item">
+        <span class="bilingual-fr">Startups et scaleups qui construisent des produits AI-enabled</span>
+        <span class="bilingual-en">Startups and scaleups building AI-enabled products</span>
+      </div>
+      <div class="audience-item">
+        <span class="bilingual-fr">Organisations qui veulent aller plus vite du concept à la production</span>
+        <span class="bilingual-en">Organisations wanting to move faster from concept to production</span>
+      </div>
+      <div class="audience-item">
+        <span class="bilingual-fr">Entrepreneurs qui veulent shipper un MVP ou prototype</span>
+        <span class="bilingual-en">Entrepreneurs wanting to ship an MVP or prototype</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CTA -->
+  <section id="contact" class="cta-section">
+    <div class="block-fr">
+      <h2>Prêt à passer<br>AI-native ?</h2>
+      <p>Un café, un appel, un échange. On en parle.</p>
+    </div>
+    <div class="block-en">
+      <h2>Ready to go<br>AI-native?</h2>
+      <p>A coffee, a call, a conversation. Let's talk.</p>
+    </div>
+    <a href="mailto:contact@leetnative.com" class="btn-primary">
+      contact@leetnative.com →
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">© 2026 LeetNative</div>
+    <div class="footer-links">
+      <a href="https://linkedin.com">LinkedIn</a>
+      <a href="mailto:contact@leetnative.com">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>
