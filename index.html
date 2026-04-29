@@ -113,19 +113,51 @@
     .nav-cta:hover { opacity: 0.85; }
 
     .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-family: 'Inter', sans-serif;
       font-size: 12px;
-      font-weight: 500;
-      color: var(--muted);
-      background: none;
-      border: 1px solid var(--border);
-      padding: 5px 12px;
+      font-weight: 600;
+      color: var(--near-white);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 4px;
       border-radius: 9999px;
       cursor: pointer;
       transition: all 0.2s;
     }
 
-    .lang-toggle:hover { border-color: var(--border-hover); color: var(--white); }
+    .lang-toggle span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 34px;
+      padding: 5px 8px;
+      border-radius: 9999px;
+      color: var(--gray);
+      transition: all 0.2s;
+    }
+
+    .lang-toggle .lang-fr-label {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    body.lang-en .lang-toggle .lang-fr-label {
+      background: transparent;
+      color: var(--gray);
+    }
+
+    body.lang-en .lang-toggle .lang-en-label {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .lang-toggle:hover {
+      border-color: rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.1);
+    }
 
     /* ─── HERO ─── */
     .hero {
@@ -397,6 +429,31 @@
       font-weight: 300;
       color: var(--gray);
       line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .team-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .team-links a {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--near-white);
+      text-decoration: none;
+      padding: 7px 12px;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      transition: all 0.2s;
+    }
+
+    .team-links a:hover {
+      color: var(--white);
+      border-color: var(--border-hover);
+      background: rgba(255, 255, 255, 0.06);
     }
 
     .team-bench {
@@ -554,7 +611,10 @@
         <span class="bilingual-fr">Parlons-en</span>
         <span class="bilingual-en">Let's talk</span>
       </a>
-      <button class="lang-toggle" onclick="document.body.classList.toggle('lang-en')">EN / FR</button>
+      <button class="lang-toggle" onclick="document.body.classList.toggle('lang-en')" aria-label="Switch language">
+        <span class="lang-fr-label">FR</span>
+        <span class="lang-en-label">EN</span>
+      </button>
     </div>
   </nav>
 
@@ -564,12 +624,12 @@
 
     <div class="block-fr">
       <h1>From legacy<br>to AI-native.</h1>
-      <p>On ne rajoute pas juste de l'IA. On transforme vos systèmes et vos équipes pour qu'ils soient AI-native depuis la base. Stratégie, architecture, livraison — on reste impliqué du début à la fin.</p>
+      <p>On ne colle pas une couche d'IA sur un produit existant en espérant que ça tienne. On reprend la stack, les workflows et les usages pour que l'IA serve vraiment au quotidien.</p>
     </div>
 
     <div class="block-en">
       <h1>From legacy<br>to AI-native.</h1>
-      <p>We don't just add AI. We transform your legacy systems and teams to be AI-native from the ground up. Strategy, architecture, delivery — we stay hands-on from start to finish.</p>
+      <p>We don’t bolt AI onto an existing product and call it transformation. We rethink the stack, the workflows, and the day-to-day usage so AI becomes genuinely useful.</p>
     </div>
 
     <div class="hero-actions">
@@ -593,12 +653,12 @@
 
     <div class="block-fr">
       <h2>Deux axes,<br>un seul objectif.</h2>
-      <p class="section-intro">On combine expertise technique et pratiques d'équipe pour ancrer l'AI-native dans votre organisation. Pas de buzzwords, juste ce qui marche.</p>
+      <p class="section-intro">On intervient sur la tech et sur la façon de travailler. Sinon, l'un finit toujours par bloquer l'autre.</p>
     </div>
 
     <div class="block-en">
       <h2>Two axes,<br>one goal.</h2>
-      <p class="section-intro">We combine technical expertise and team practices to make AI-native a reality in your organisation. No buzzwords — just what works.</p>
+      <p class="section-intro">We work on both the tech and the way teams operate. If you fix only one, the other usually slows everything down again.</p>
     </div>
 
     <div class="offers">
@@ -606,22 +666,22 @@
         <div class="offer-tag">01</div>
         <div class="block-fr">
           <h3>Product & Tech</h3>
-          <p>Migration AI-native de bout en bout. Architecture, refactoring, intégration d'agents IA, copilots et automation de workflows. De l'audit initial jusqu'à la production.</p>
+          <p>Quand un produit legacy doit évoluer, on remet de l'ordre dans la stack, les intégrations et les workflows IA. Le but n'est pas une démo de plus, mais quelque chose qui tient en production.</p>
         </div>
         <div class="block-en">
           <h3>Product & Tech</h3>
-          <p>End-to-end AI-native migration. Architecture, refactoring, AI agents, copilots, and workflow automation. From initial audit through to production-ready delivery.</p>
+          <p>When a legacy product needs to move, we clean up the stack, the integrations, and the AI workflows. The goal isn’t another demo — it’s something that holds up in production.</p>
         </div>
       </div>
       <div class="offer">
         <div class="offer-tag">02</div>
         <div class="block-fr">
           <h3>People & Process</h3>
-          <p>Montée en compétence de vos équipes. Audits, formation pratique, ateliers et conception de modèles opérationnels pour des équipes AI-native au quotidien.</p>
+          <p>On aide les équipes à monter en niveau sans leur vendre une grande transformation théorique. Audits, ateliers, pratiques concrètes et cadre de travail pour avancer vite.</p>
         </div>
         <div class="block-en">
           <h3>People & Process</h3>
-          <p>Team capability building. AI Readiness Audits, practical training, workshops, and operating model design for AI-native daily delivery.</p>
+          <p>We help teams level up without wrapping it in a huge theoretical transformation program. Audits, workshops, practical habits, and a working setup that helps them move faster.</p>
         </div>
       </div>
     </div>
@@ -646,11 +706,11 @@
         <div>
           <div class="block-fr">
             <h3>Modernisation de produits legacy</h3>
-            <p>Migration vers des stacks modernes et fondations AI-ready. Refactoring, replatforming, décomposition de services, nettoyage d'intégrations.</p>
+            <p>On reprend les bases quand un produit s'est empilé trop vite : architecture, services, intégrations, dette technique, points de friction.</p>
           </div>
           <div class="block-en">
             <h3>Legacy product modernisation</h3>
-            <p>Migrating to modern tech stacks and AI-ready foundations. Refactoring, replatforming, service decomposition, integration clean-up.</p>
+            <p>We go back to the foundations when a product has grown in layers: architecture, services, integrations, technical debt, and the friction that comes with it.</p>
           </div>
         </div>
       </div>
@@ -659,11 +719,11 @@
         <div>
           <div class="block-fr">
             <h3>Livraison produit</h3>
-            <p>De l'idée au PoC, du MVP à la production. Livraison pragmatique et décisions produit qui réduisent les retouches plus tard.</p>
+            <p>On aide à sortir du flou : cadrer vite, construire le bon premier périmètre, puis livrer sans empiler des détours inutiles.</p>
           </div>
           <div class="block-en">
             <h3>Product delivery</h3>
-            <p>From ideas to PoC, from MVP to production. Pragmatic delivery and product decisions that reduce rework later.</p>
+            <p>We help teams get out of the blurry phase: narrow the scope fast, build the right first version, then ship without piling on unnecessary detours.</p>
           </div>
         </div>
       </div>
@@ -704,11 +764,11 @@
 
     <div class="block-fr">
       <h2>Senior, impliqué,<br>et flexible.</h2>
-      <p class="section-intro">Notre modèle : Piotr + Leo + ingénieurs produit IA. On reste au contact du terrain, en combinant stratégie, architecture, livraison et exécution.</p>
+      <p class="section-intro">Le modèle est simple : Piotr, Léo et une équipe resserrée d'ingénieurs produit IA. On reste dans l'exécution, pas en surplomb.</p>
     </div>
     <div class="block-en">
       <h2>Senior, hands-on,<br>and flexible.</h2>
-      <p class="section-intro">Our model: Piotr + Leo + AI product engineers. We stay hands-on, combining strategy, architecture, delivery, and execution.</p>
+      <p class="section-intro">The model is simple: Piotr, Leo, and a small team of AI product engineers. We stay close to execution instead of hovering above it.</p>
     </div>
 
     <div class="modes">
@@ -716,33 +776,33 @@
         <div class="mode-tag">01</div>
         <div class="block-fr">
           <h3>Strike team</h3>
-          <p>Exécution ciblée sur des problèmes spécifiques. On entre, on résout, on part.</p>
+          <p>Vous avez un sujet bloqué, un chantier précis, une dette qui coûte trop cher : on intervient, on débloque, on transmet.</p>
         </div>
         <div class="block-en">
           <h3>Strike team</h3>
-          <p>Focused execution on specific problems. We come in, solve it, move on.</p>
+          <p>A project is stuck, a specific workstream needs help, or a messy piece of debt is slowing everything down: we step in, unblock it, and hand it over cleanly.</p>
         </div>
       </div>
       <div class="mode">
         <div class="mode-tag">02</div>
         <div class="block-fr">
           <h3>Partenaire embed</h3>
-          <p>Livraison long terme. On intègre votre équipe et on livre avec vous.</p>
+          <p>Quand il faut durer, on travaille avec l'équipe au quotidien. Pas en audit qui finit dans un doc oublié.</p>
         </div>
         <div class="block-en">
           <h3>Embedded partner</h3>
-          <p>Long-term delivery. We join your team and deliver alongside you.</p>
+          <p>When the work needs time, we join the team day to day. Not as an outside audit that ends up forgotten in a document.</p>
         </div>
       </div>
       <div class="mode">
         <div class="mode-tag">03</div>
         <div class="block-fr">
           <h3>Transformation</h3>
-          <p>On aide vos équipes internes à devenir AI-native. Transfert de compétences.</p>
+          <p>Le but n'est pas de nous rendre indispensables. On met en place les pratiques, puis on aide vos équipes à les tenir seules.</p>
         </div>
         <div class="block-en">
           <h3>Transformation</h3>
-          <p>Helping your internal teams become AI-native. Capability transfer.</p>
+          <p>The goal isn’t to make ourselves indispensable. We put the practices in place, then help your team keep them running on its own.</p>
         </div>
       </div>
     </div>
@@ -756,11 +816,11 @@
 
     <div class="block-fr">
       <h2>Des praticiens,<br>pas des théoriciens.</h2>
-      <p class="section-intro">Deux co-fondateurs senior, plus une équipe de livraison extended. On a testé 20+ outils, géré des orchestration multi-agents, et livré des workflows AI-native pour de vrais clients.</p>
+      <p class="section-intro">Deux co-fondateurs senior, plus une équipe resserrée autour de la livraison. On connaît les outils, mais surtout les compromis, les bugs et les angles morts qui arrivent quand il faut vraiment shipper.</p>
     </div>
     <div class="block-en">
       <h2>Practitioners,<br>not theorists.</h2>
-      <p class="section-intro">Two senior co-founders, plus an extended delivery team. We've tested 20+ tools, managed multi-agent orchestration, and shipped AI-native workflows for real clients.</p>
+      <p class="section-intro">Two senior co-founders, plus a delivery-focused extended team. We know the tools, but more importantly the tradeoffs, bugs, and blind spots that show up when something actually has to ship.</p>
     </div>
 
     <div class="team-grid">
@@ -771,8 +831,11 @@
           <span class="bilingual-en">Co-founder</span>
         </div>
         <div class="team-desc">
-          <span class="bilingual-fr">Architecture de systèmes IA, agent workflows, debug tooling. Senior product & engineering leadership.</span>
-          <span class="bilingual-en">AI systems architecture, agent workflows, debug tooling. Senior product & engineering leadership.</span>
+          <span class="bilingual-fr">Architecture de systèmes IA, workflows d'agents, outillage de debug. Il intervient surtout quand un système devient trop flou, trop fragile ou trop compliqué à faire évoluer.</span>
+          <span class="bilingual-en">AI systems architecture, agent workflows, and debugging tooling. He usually steps in when a system has become too blurry, too fragile, or too painful to evolve.</span>
+        </div>
+        <div class="team-links">
+          <a href="https://www.linkedin.com/in/piotrbuda91/" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
       </div>
       <div class="team-card">
@@ -782,8 +845,11 @@
           <span class="bilingual-en">Co-founder</span>
         </div>
         <div class="team-desc">
-          <span class="bilingual-fr">Pratiques d'ingénierie AI-native, enablement d'équipes, stratégie produit. Fondateur de Gaudez Tech Lab.</span>
-          <span class="bilingual-en">AI-native engineering practices, team enablement, product strategy. Founder of Gaudez Tech Lab.</span>
+          <span class="bilingual-fr">Pratiques d'ingénierie AI-native, enablement d'équipes, stratégie produit. Il travaille surtout sur la manière de rendre ces sujets utiles et tenables dans la vraie vie d'une équipe.</span>
+          <span class="bilingual-en">AI-native engineering practices, team enablement, and product strategy. He focuses on making these subjects useful and sustainable in the real life of a team.</span>
+        </div>
+        <div class="team-links">
+          <a href="https://www.linkedin.com/in/l%C3%A9o-gaudez-ba627666" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
       </div>
     </div>
@@ -864,7 +930,7 @@
       <span class="brand-lockup"><span class="brand-leet">Leet</span><span class="brand-native">Native</span></span>
     </div>
     <div class="footer-links">
-      <a href="https://linkedin.com">LinkedIn</a>
+      <a href="https://www.linkedin.com/company/leetnative" target="_blank" rel="noreferrer">LinkedIn</a>
       <a href="mailto:contact@leetnative.com">Contact</a>
     </div>
   </footer>
