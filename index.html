@@ -18,14 +18,31 @@
       --border: rgba(255, 255, 255, 0.06);
       --border-hover: rgba(255, 255, 255, 0.12);
       --surface: #18181b;
+      --surface-strong: #111116;
       --warm: #fef3c7;
+      --accent-blue: #9fb8ff;
+      --accent-violet: #c5b3ff;
+      --accent-cyan: #8ddfe8;
+      --space-hero-top: 96px;
+      --space-hero-bottom: 42px;
+      --space-section-y: 60px;
+      --space-section-y-mobile: 50px;
+      --space-cta-y: 78px;
+      --brand-mark-size-nav: 36px;
+      --brand-mark-size-footer: 30px;
+      --brand-lockup-gap: 1px;
+      --mini-illu-size: 34px;
+      --avatar-size: 56px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--black);
+      background:
+        radial-gradient(circle at top center, rgba(141, 223, 232, 0.08), transparent 28%),
+        radial-gradient(circle at 20% 20%, rgba(197, 179, 255, 0.08), transparent 22%),
+        var(--black);
       color: var(--near-white);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
@@ -40,12 +57,12 @@
       right: 0;
       z-index: 100;
       padding: 0 32px;
-      height: 60px;
+      height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid var(--border);
-      background: rgba(9, 9, 11, 0.85);
+      background: rgba(9, 9, 11, 0.82);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
@@ -53,7 +70,7 @@
     .nav-logo {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       font-size: 15px;
       font-weight: 600;
       letter-spacing: -0.3px;
@@ -62,16 +79,19 @@
     }
 
     .brand-mark {
-      width: 28px;
-      height: 28px;
-      flex: 0 0 28px;
+      width: var(--brand-mark-size-nav);
+      height: var(--brand-mark-size-nav);
+      flex: 0 0 var(--brand-mark-size-nav);
       display: inline-block;
+      filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.28));
     }
 
     .brand-lockup {
       display: inline-flex;
-      align-items: baseline;
-      gap: 0;
+      align-items: center;
+      gap: var(--brand-lockup-gap);
+      line-height: 1;
+      transform: translateY(-0.5px);
     }
 
     .brand-lockup .brand-leet {
@@ -161,12 +181,12 @@
 
     /* ─── HERO ─── */
     .hero {
-      min-height: 100vh;
+      min-height: 72vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 120px 32px 80px;
-      max-width: 720px;
+      padding: var(--space-hero-top) 32px var(--space-hero-bottom);
+      max-width: 760px;
       margin: 0 auto;
     }
 
@@ -176,7 +196,7 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .hero h1 {
@@ -185,16 +205,17 @@
       line-height: 1.1;
       letter-spacing: -1.8px;
       color: var(--white);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
+      text-wrap: balance;
     }
 
     .hero p {
       font-size: 17px;
       font-weight: 300;
       color: var(--gray);
-      max-width: 520px;
+      max-width: 560px;
       line-height: 1.75;
-      margin-bottom: 44px;
+      margin-bottom: 36px;
     }
 
     .hero-actions {
@@ -225,30 +246,61 @@
       gap: 8px;
       font-size: 14px;
       font-weight: 400;
-      color: var(--gray);
-      background: transparent;
+      color: var(--near-white);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 10px 22px;
       border-radius: 9999px;
       text-decoration: none;
-      transition: color 0.2s;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
     }
 
-    .btn-ghost:hover { color: var(--white); }
+    .btn-ghost:hover {
+      color: var(--white);
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.05);
+    }
 
     /* ─── SECTIONS ─── */
     section {
-      padding: 100px 32px;
-      max-width: 720px;
+      padding: var(--space-section-y) 32px;
+      max-width: 760px;
       margin: 0 auto;
     }
 
     .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--gray);
       margin-bottom: 14px;
+    }
+
+    .section-label-icon {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--near-white);
+      flex: 0 0 24px;
+    }
+
+    .section-label-icon svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     section h2 {
@@ -258,15 +310,16 @@
       color: var(--white);
       margin-bottom: 14px;
       line-height: 1.2;
+      text-wrap: balance;
     }
 
     .section-intro {
       font-size: 15px;
       font-weight: 300;
       color: var(--gray);
-      max-width: 540px;
+      max-width: 560px;
       line-height: 1.75;
-      margin-bottom: 48px;
+      margin-bottom: 36px;
     }
 
     /* ─── OFFERS (2 cards) ─── */
@@ -277,21 +330,44 @@
     }
 
     .offer {
-      padding: 36px 28px;
-      background: var(--surface);
-      border-radius: 16px;
+      padding: 30px 26px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02));
+      border-radius: 18px;
       border: 1px solid var(--border);
-      transition: border-color 0.25s;
+      transition: border-color 0.25s, transform 0.25s;
     }
 
-    .offer:hover { border-color: var(--border-hover); }
+    .offer:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+    }
 
-    .offer-tag {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
+    .offer-tag,
+    .service-num,
+    .mode-tag {
+      width: var(--mini-illu-size);
+      height: var(--mini-illu-size);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--near-white);
       margin-bottom: 16px;
-      letter-spacing: 0.5px;
+      flex: 0 0 var(--mini-illu-size);
+    }
+
+    .offer-tag svg,
+    .service-num svg,
+    .mode-tag svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .offer h3 {
@@ -321,19 +397,17 @@
     }
 
     .service {
-      padding: 28px 28px;
-      background: var(--black);
+      padding: 24px 26px;
+      background: var(--surface-strong);
       display: flex;
-      gap: 20px;
+      gap: 16px;
       align-items: flex-start;
     }
 
     .service-num {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      min-width: 20px;
-      padding-top: 2px;
+      min-width: var(--mini-illu-size);
+      margin-bottom: 0;
+      margin-top: 2px;
     }
 
     .service h3 {
@@ -359,21 +433,19 @@
     }
 
     .mode {
-      padding: 28px 24px;
-      background: var(--surface);
-      border-radius: 16px;
+      padding: 26px 22px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02));
+      border-radius: 18px;
       border: 1px solid var(--border);
-      transition: border-color 0.25s;
+      transition: border-color 0.25s, transform 0.25s;
     }
 
-    .mode:hover { border-color: var(--border-hover); }
+    .mode:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+    }
 
     .mode-tag {
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--muted);
       margin-bottom: 14px;
     }
 
@@ -400,14 +472,43 @@
     }
 
     .team-card {
-      padding: 32px 28px;
-      background: var(--surface);
-      border-radius: 16px;
+      padding: 28px 24px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02));
+      border-radius: 18px;
       border: 1px solid var(--border);
-      transition: border-color 0.25s;
+      transition: border-color 0.25s, transform 0.25s;
     }
 
-    .team-card:hover { border-color: var(--border-hover); }
+    .team-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+    }
+
+    .team-card-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .team-avatar {
+      width: var(--avatar-size);
+      height: var(--avatar-size);
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      flex: 0 0 var(--avatar-size);
+    }
+
+    .team-avatar-piotr { color: var(--accent-blue); }
+    .team-avatar-leo { color: var(--accent-violet); }
 
     .team-card h3 {
       font-size: 17px;
@@ -463,7 +564,8 @@
       border-radius: 12px;
       font-size: 13px;
       font-weight: 300;
-      color: var(--muted);
+      color: var(--gray);
+      background: rgba(255, 255, 255, 0.025);
     }
 
     /* ─── AUDIENCE ─── */
@@ -490,7 +592,7 @@
     /* ─── CTA ─── */
     .cta-section {
       text-align: center;
-      padding: 140px 32px;
+      padding: var(--space-cta-y) 32px;
     }
 
     .cta-section h2 {
@@ -526,20 +628,32 @@
     .footer-left {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       font-size: 12px;
       font-weight: 400;
       color: var(--muted);
     }
 
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer-meta {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
     .footer-left .brand-lockup {
       color: var(--near-white);
+      font-size: 15px;
     }
 
     .footer-left .brand-mark {
-      width: 22px;
-      height: 22px;
-      flex-basis: 22px;
+      width: var(--brand-mark-size-footer);
+      height: var(--brand-mark-size-footer);
+      flex-basis: var(--brand-mark-size-footer);
     }
 
     .footer-links {
@@ -550,7 +664,7 @@
     .footer-links a {
       font-size: 12px;
       font-weight: 400;
-      color: var(--muted);
+      color: var(--gray);
       text-decoration: none;
       transition: color 0.2s;
     }
@@ -559,10 +673,11 @@
 
     /* ─── DIVIDER ─── */
     .divider {
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
       border: none;
       border-top: 1px solid var(--border);
+      opacity: 0.72;
     }
 
     /* ─── RESPONSIVE ─── */
@@ -570,8 +685,12 @@
       .nav-right { display: none; }
       .offers, .team-grid, .audience-grid { grid-template-columns: 1fr; }
       .modes { grid-template-columns: 1fr; }
-      section { padding: 72px 24px; }
-      .hero { padding: 96px 24px 56px; }
+      section { padding: var(--space-section-y-mobile) 24px; }
+      .hero {
+        min-height: auto;
+        padding: 94px 24px 44px;
+      }
+      .cta-section { padding: 76px 24px; }
     }
 
     /* ─── BILINGUAL ─── */
@@ -649,7 +768,7 @@
 
   <!-- OFFERS -->
   <section id="offres">
-    <div class="section-label">01 — Offres</div>
+    <div class="section-label"><span class="section-label-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><rect x="2.5" y="2.5" width="11" height="11" rx="2"></rect><path d="M5 6.5H11"></path><path d="M5 9.5H9.5"></path></svg></span>Offres</div>
 
     <div class="block-fr">
       <h2>Deux axes,<br>un seul objectif.</h2>
@@ -663,7 +782,7 @@
 
     <div class="offers">
       <div class="offer">
-        <div class="offer-tag">01</div>
+        <div class="offer-tag" aria-hidden="true"><svg viewBox="0 0 20 20"><rect x="3" y="4" width="8" height="8" rx="2"></rect><path d="M9 8H16"></path><path d="M12 12H16"></path><path d="M6 15H16"></path></svg></div>
         <div class="block-fr">
           <h3>Product & Tech</h3>
           <p>Quand un produit legacy doit évoluer, on remet de l'ordre dans la stack, les intégrations et les workflows IA. Le but n'est pas une démo de plus, mais quelque chose qui tient en production.</p>
@@ -674,7 +793,7 @@
         </div>
       </div>
       <div class="offer">
-        <div class="offer-tag">02</div>
+        <div class="offer-tag" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="6" cy="6" r="2"></circle><circle cx="14" cy="6" r="2"></circle><circle cx="10" cy="14" r="2"></circle><path d="M7.5 7.5L8.8 11.6"></path><path d="M12.5 7.5L11.2 11.6"></path></svg></div>
         <div class="block-fr">
           <h3>People & Process</h3>
           <p>On aide les équipes à monter en niveau sans leur vendre une grande transformation théorique. Audits, ateliers, pratiques concrètes et cadre de travail pour avancer vite.</p>
@@ -691,7 +810,7 @@
 
   <!-- SERVICES -->
   <section id="services">
-    <div class="section-label">02 — Services</div>
+    <div class="section-label"><span class="section-label-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 4.5H13"></path><path d="M3 8H10.5"></path><path d="M3 11.5H8"></path><circle cx="11.5" cy="8" r="2"></circle></svg></span>Services</div>
 
     <div class="block-fr">
       <h2>Comment on aide.</h2>
@@ -702,7 +821,7 @@
 
     <div class="services-list">
       <div class="service">
-        <span class="service-num">01</span>
+        <span class="service-num" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4 15.5L10 4.5L16 15.5"></path><path d="M7.2 11H12.8"></path></svg></span>
         <div>
           <div class="block-fr">
             <h3>Modernisation de produits legacy</h3>
@@ -715,7 +834,7 @@
         </div>
       </div>
       <div class="service">
-        <span class="service-num">02</span>
+        <span class="service-num" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4 10H16"></path><path d="M11 5L16 10L11 15"></path><rect x="4" y="6" width="4" height="8" rx="1.5"></rect></svg></span>
         <div>
           <div class="block-fr">
             <h3>Livraison produit</h3>
@@ -728,7 +847,7 @@
         </div>
       </div>
       <div class="service">
-        <span class="service-num">03</span>
+        <span class="service-num" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="5"></circle><path d="M10 7V10L12 12"></path><path d="M10 3V4.5"></path><path d="M17 10H15.5"></path></svg></span>
         <div>
           <div class="block-fr">
             <h3>AI Readiness Audit</h3>
@@ -741,7 +860,7 @@
         </div>
       </div>
       <div class="service">
-        <span class="service-num">04</span>
+        <span class="service-num" aria-hidden="true"><svg viewBox="0 0 20 20"><rect x="4" y="4" width="5" height="5" rx="1.2"></rect><rect x="11" y="4" width="5" height="5" rx="1.2"></rect><rect x="7.5" y="11" width="5" height="5" rx="1.2"></rect></svg></span>
         <div>
           <div class="block-fr">
             <h3>Formation et ateliers</h3>
@@ -760,7 +879,7 @@
 
   <!-- HOW WE WORK -->
   <section id="comment">
-    <div class="section-label">03 — Comment on travaille</div>
+    <div class="section-label"><span class="section-label-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 2.5V5.5"></path><path d="M8 10.5V13.5"></path><path d="M2.5 8H5.5"></path><path d="M10.5 8H13.5"></path><circle cx="8" cy="8" r="2.5"></circle></svg></span>Comment on travaille</div>
 
     <div class="block-fr">
       <h2>Senior, impliqué,<br>et flexible.</h2>
@@ -773,7 +892,7 @@
 
     <div class="modes">
       <div class="mode">
-        <div class="mode-tag">01</div>
+        <div class="mode-tag" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 3.5L12.1 7.9L16.8 8.4L13.3 11.5L14.2 16L10 13.7L5.8 16L6.7 11.5L3.2 8.4L7.9 7.9L10 3.5Z"></path></svg></div>
         <div class="block-fr">
           <h3>Strike team</h3>
           <p>Vous avez un sujet bloqué, un chantier précis, une dette qui coûte trop cher : on intervient, on débloque, on transmet.</p>
@@ -784,7 +903,7 @@
         </div>
       </div>
       <div class="mode">
-        <div class="mode-tag">02</div>
+        <div class="mode-tag" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M7 10C7 8.3 8.3 7 10 7C11.7 7 13 8.3 13 10"></path><path d="M4.5 10C4.5 6.96 6.96 4.5 10 4.5C13.04 4.5 15.5 6.96 15.5 10"></path><path d="M6 13.5H14"></path></svg></div>
         <div class="block-fr">
           <h3>Partenaire embed</h3>
           <p>Quand il faut durer, on travaille avec l'équipe au quotidien. Pas en audit qui finit dans un doc oublié.</p>
@@ -795,7 +914,7 @@
         </div>
       </div>
       <div class="mode">
-        <div class="mode-tag">03</div>
+        <div class="mode-tag" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 4V16"></path><path d="M5 9L10 4L15 9"></path><path d="M5 12.5C6.4 14.1 8 15 10 15C12 15 13.6 14.1 15 12.5"></path></svg></div>
         <div class="block-fr">
           <h3>Transformation</h3>
           <p>Le but n'est pas de nous rendre indispensables. On met en place les pratiques, puis on aide vos équipes à les tenir seules.</p>
@@ -812,7 +931,7 @@
 
   <!-- TEAM -->
   <section id="equipe">
-    <div class="section-label">04 — L'équipe</div>
+    <div class="section-label"><span class="section-label-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="5.25" cy="6" r="2.25"></circle><circle cx="10.75" cy="6.5" r="1.75"></circle><path d="M2.75 12.25C3.5 10.7 5 9.9 6.8 9.9C8.4 9.9 9.7 10.5 10.5 11.75"></path><path d="M9.25 12.25C9.7 11.3 10.6 10.75 11.8 10.75C12.55 10.75 13.2 10.98 13.75 11.45"></path></svg></span>L'équipe</div>
 
     <div class="block-fr">
       <h2>Des praticiens,<br>pas des théoriciens.</h2>
@@ -825,10 +944,15 @@
 
     <div class="team-grid">
       <div class="team-card">
-        <h3>Piotr Buda</h3>
-        <div class="team-role">
-          <span class="bilingual-fr">Co-fondateur</span>
-          <span class="bilingual-en">Co-founder</span>
+        <div class="team-card-head">
+          <div class="team-avatar team-avatar-piotr" aria-hidden="true">PB</div>
+          <div>
+            <h3>Piotr Buda</h3>
+            <div class="team-role">
+              <span class="bilingual-fr">Co-fondateur</span>
+              <span class="bilingual-en">Co-founder</span>
+            </div>
+          </div>
         </div>
         <div class="team-desc">
           <span class="bilingual-fr">Architecture de systèmes IA, workflows d'agents, outillage de debug. Il intervient surtout quand un système devient trop flou, trop fragile ou trop compliqué à faire évoluer.</span>
@@ -839,10 +963,15 @@
         </div>
       </div>
       <div class="team-card">
-        <h3>Léo Gaudez</h3>
-        <div class="team-role">
-          <span class="bilingual-fr">Co-fondateur</span>
-          <span class="bilingual-en">Co-founder</span>
+        <div class="team-card-head">
+          <div class="team-avatar team-avatar-leo" aria-hidden="true">LG</div>
+          <div>
+            <h3>Léo Gaudez</h3>
+            <div class="team-role">
+              <span class="bilingual-fr">Co-fondateur</span>
+              <span class="bilingual-en">Co-founder</span>
+            </div>
+          </div>
         </div>
         <div class="team-desc">
           <span class="bilingual-fr">Pratiques d'ingénierie AI-native, enablement d'équipes, stratégie produit. Il travaille surtout sur la manière de rendre ces sujets utiles et tenables dans la vraie vie d'une équipe.</span>
@@ -864,7 +993,7 @@
 
   <!-- AUDIENCE -->
   <section id="audience">
-    <div class="section-label">05 — Pour qui</div>
+    <div class="section-label"><span class="section-label-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.75"></circle><circle cx="8" cy="8" r="1.75"></circle><path d="M8 3.25V1.75"></path><path d="M8 14.25V12.75"></path><path d="M3.25 8H1.75"></path><path d="M14.25 8H12.75"></path></svg></span>Pour qui</div>
 
     <div class="block-fr">
       <h2>Nos clients idéaux.</h2>
@@ -926,8 +1055,10 @@
         <text x="40" y="48" text-anchor="middle" font-family="Geist Mono, monospace" font-weight="600" font-size="28" fill="#fafafa" letter-spacing="-1">LN</text>
         <rect x="24" y="58" width="32" height="2" rx="1" fill="#fafafa"/>
       </svg>
-      <span>© 2026</span>
-      <span class="brand-lockup"><span class="brand-leet">Leet</span><span class="brand-native">Native</span></span>
+      <div class="footer-brand">
+        <span class="brand-lockup"><span class="brand-leet">Leet</span><span class="brand-native">Native</span></span>
+        <span class="footer-meta">© 2026</span>
+      </div>
     </div>
     <div class="footer-links">
       <a href="https://www.linkedin.com/company/leetnative" target="_blank" rel="noreferrer">LinkedIn</a>
