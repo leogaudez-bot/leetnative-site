@@ -659,6 +659,118 @@
       line-height: 1.7;
     }
 
+    /* ─── USE CASES ─── */
+    .rubric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .rubric-card {
+      padding: 22px 22px 20px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .rubric-card:hover,
+    .roadmap-panel:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 18px 46px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .rubric-kicker {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .rubric-card h3,
+    .roadmap-panel h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: -0.25px;
+    }
+
+    .rubric-card p,
+    .roadmap-panel p,
+    .roadmap-list li {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    .roadmap-panel {
+      margin-top: 18px;
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .roadmap-panel > p {
+      margin-bottom: 16px;
+    }
+
+    .roadmap-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      counter-reset: roadmap-step;
+    }
+
+    .roadmap-list li {
+      counter-increment: roadmap-step;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .roadmap-list li:first-child {
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .roadmap-list li::before {
+      content: counter(roadmap-step, decimal-leading-zero);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 28px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--near-white);
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .roadmap-list strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--near-white);
+      margin-bottom: 4px;
+      letter-spacing: -0.15px;
+    }
+
     /* ─── HOW WE WORK ─── */
     .modes {
       display: grid;
@@ -936,7 +1048,7 @@
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
       .nav-right { display: none; }
-      .offers, .team-grid, .audience-grid, .hero-founders { grid-template-columns: 1fr; }
+      .offers, .team-grid, .audience-grid, .hero-founders, .rubric-grid { grid-template-columns: 1fr; }
       .modes { grid-template-columns: 1fr; }
       section { padding: var(--space-section-y-mobile) 24px; }
       .hero {
@@ -956,6 +1068,10 @@
       }
       .signal-grid {
         grid-template-columns: 1fr;
+      }
+      .roadmap-list li {
+        grid-template-columns: 1fr;
+        gap: 10px;
       }
       .cta-section { padding: 76px 24px; }
       footer {
@@ -993,6 +1109,10 @@
       <a href="#offres">
         <span class="bilingual-fr">Offres</span>
         <span class="bilingual-en">Services</span>
+      </a>
+      <a href="#use-cases">
+        <span class="bilingual-fr">Cas d'usage</span>
+        <span class="bilingual-en">Use cases</span>
       </a>
       <a href="#equipe">
         <span class="bilingual-fr">Équipe</span>
@@ -1246,6 +1366,126 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- USE CASES -->
+  <section id="use-cases">
+    <div class="section-label"><span class="section-label-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 5.25H12"></path><path d="M4 8H10"></path><path d="M4 10.75H8"></path><rect x="2.5" y="3" width="11" height="10" rx="2"></rect></svg></span>MTA</div>
+
+    <div class="block-fr">
+      <h2>Des terrains concrets pour<br>prototyper l'orchestration MTA.</h2>
+      <p class="section-intro">Ici, MTA désigne l'orchestration du dernier checkpoint humain — MFA, step-up auth, élévation admin ou validation d'identité — là où un agent peut préparer 90% du flux mais pas franchir seul l'étape sensible.</p>
+    </div>
+    <div class="block-en">
+      <h2>Concrete ground to prototype<br>MTA orchestration.</h2>
+      <p class="section-intro">Here, MTA means orchestrating the final human checkpoint — MFA, step-up auth, admin elevation, or identity validation — where an agent can do most of the work but should not cross the sensitive step alone.</p>
+    </div>
+
+    <div class="rubric-grid">
+      <div class="rubric-card">
+        <span class="rubric-kicker">01</span>
+        <div class="block-fr">
+          <h3>Payments ops</h3>
+          <p>Stripe, PayPal Business et dashboards PSP pour remboursements, payouts et réglages live qui exigent encore une validation forte.</p>
+        </div>
+        <div class="block-en">
+          <h3>Payments ops</h3>
+          <p>Stripe, PayPal Business, and PSP dashboards for refunds, payouts, and live settings that still require strong approval.</p>
+        </div>
+      </div>
+
+      <div class="rubric-card">
+        <span class="rubric-kicker">02</span>
+        <div class="block-fr">
+          <h3>Payroll & contractor payouts</h3>
+          <p>Gusto, Deel et Wise Business pour runs de paie, changement de bénéficiaire et approbation finale de versements.</p>
+        </div>
+        <div class="block-en">
+          <h3>Payroll & contractor payouts</h3>
+          <p>Gusto, Deel, and Wise Business for payroll runs, beneficiary changes, and final payout approval.</p>
+        </div>
+      </div>
+
+      <div class="rubric-card">
+        <span class="rubric-kicker">03</span>
+        <div class="block-fr">
+          <h3>Cloud & admin elevation</h3>
+          <p>AWS, Azure et GitHub pour assume-role, déploiements prod, secrets et approbations d'environnement avec élévation traçable.</p>
+        </div>
+        <div class="block-en">
+          <h3>Cloud & admin elevation</h3>
+          <p>AWS, Azure, and GitHub for assume-role, production deploys, secrets, and environment approvals with traceable elevation.</p>
+        </div>
+      </div>
+
+      <div class="rubric-card">
+        <span class="rubric-kicker">04</span>
+        <div class="block-fr">
+          <h3>Commerce & growth ops</h3>
+          <p>Amazon Seller Central, Shopify Admin, Meta Ads et Google Ads pour accès compte, facturation et changements sensibles côté business.</p>
+        </div>
+        <div class="block-en">
+          <h3>Commerce & growth ops</h3>
+          <p>Amazon Seller Central, Shopify Admin, Meta Ads, and Google Ads for account access, billing, and sensitive business-side changes.</p>
+        </div>
+      </div>
+
+      <div class="rubric-card">
+        <span class="rubric-kicker">05</span>
+        <div class="block-fr">
+          <h3>Public & identity workflows</h3>
+          <p>Login.gov, SAM.gov et FranceConnect+ pour dépôts, validation d'identité et étapes réglementaires qui doivent rester sous contrôle humain.</p>
+        </div>
+        <div class="block-en">
+          <h3>Public & identity workflows</h3>
+          <p>Login.gov, SAM.gov, and FranceConnect+ for submissions, identity validation, and regulated steps that should remain under human control.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="roadmap-panel">
+      <div class="block-fr">
+        <h3>Séquence prototype — 4 semaines</h3>
+        <p>Ordre recommandé pour livrer vite des MVPs visibles, puis monter progressivement vers les workflows les plus sensibles.</p>
+      </div>
+      <div class="block-en">
+        <h3>Prototype sequence — 4 weeks</h3>
+        <p>Recommended order to ship visible MVPs fast, then move toward the most sensitive workflows.</p>
+      </div>
+
+      <ol class="roadmap-list">
+        <li>
+          <div>
+            <strong><span class="bilingual-fr">Semaine 1 — Payments ops</span><span class="bilingual-en">Week 1 — Payments ops</span></strong>
+            <span class="bilingual-fr">Prototype refund / payout / settings avec checkpoint humain propre sur Stripe, PayPal Business ou PSP équivalent.</span>
+            <span class="bilingual-en">Refund / payout / settings prototype with a clean human checkpoint on Stripe, PayPal Business, or an equivalent PSP.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong><span class="bilingual-fr">Semaine 2 — Payroll / payouts</span><span class="bilingual-en">Week 2 — Payroll / payouts</span></strong>
+            <span class="bilingual-fr">Flow de paie ou de versement contractuel avec approbation finale sur Gusto, Deel ou Wise Business.</span>
+            <span class="bilingual-en">Payroll or contractor payout flow with final approval on Gusto, Deel, or Wise Business.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong><span class="bilingual-fr">Semaine 3 — Cloud/admin elevation</span><span class="bilingual-en">Week 3 — Cloud/admin elevation</span></strong>
+            <span class="bilingual-fr">Assume-role, déploiement prod ou accès secret avec élévation traçable sur AWS, Azure ou GitHub.</span>
+            <span class="bilingual-en">Assume-role, production deploy, or secret access flow with traceable elevation on AWS, Azure, or GitHub.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong><span class="bilingual-fr">Semaine 4 — Commerce, ads & identité publique</span><span class="bilingual-en">Week 4 — Commerce, ads & public identity</span></strong>
+            <span class="bilingual-fr">Dernier lot pour Shopify / Amazon, Meta / Google Ads et parcours d'identité publics nécessitant validation humaine.</span>
+            <span class="bilingual-en">Final batch for Shopify / Amazon, Meta / Google Ads, and public identity flows that require human validation.</span>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
