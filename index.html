@@ -51,11 +51,37 @@
     }
 
     .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
       font-size: 15px;
       font-weight: 600;
       letter-spacing: -0.3px;
       color: var(--white);
       text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      display: inline-block;
+    }
+
+    .brand-lockup {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0;
+    }
+
+    .brand-lockup .brand-leet {
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .brand-lockup .brand-native {
+      font-weight: 400;
+      color: var(--near-white);
     }
 
     .nav-right {
@@ -441,9 +467,22 @@
     }
 
     .footer-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
       font-size: 12px;
       font-weight: 400;
       color: var(--muted);
+    }
+
+    .footer-left .brand-lockup {
+      color: var(--near-white);
+    }
+
+    .footer-left .brand-mark {
+      width: 22px;
+      height: 22px;
+      flex-basis: 22px;
     }
 
     .footer-links {
@@ -471,8 +510,7 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
-      .nav-right a { display: none; }
-      .nav-cta { display: none; }
+      .nav-right { display: none; }
       .offers, .team-grid, .audience-grid { grid-template-columns: 1fr; }
       .modes { grid-template-columns: 1fr; }
       section { padding: 72px 24px; }
@@ -495,7 +533,14 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">LeetNative</a>
+    <a href="#" class="nav-logo" aria-label="LeetNative home">
+      <svg class="brand-mark" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="80" height="80" rx="16" fill="#09090b"/>
+        <text x="40" y="48" text-anchor="middle" font-family="Geist Mono, monospace" font-weight="600" font-size="28" fill="#fafafa" letter-spacing="-1">LN</text>
+        <rect x="24" y="58" width="32" height="2" rx="1" fill="#fafafa"/>
+      </svg>
+      <span class="brand-lockup"><span class="brand-leet">Leet</span><span class="brand-native">Native</span></span>
+    </a>
     <div class="nav-right">
       <a href="#offres">
         <span class="bilingual-fr">Offres</span>
@@ -544,10 +589,7 @@
 
   <!-- OFFERS -->
   <section id="offres">
-    <div class="section-label">
-      <span class="bilingual-fr">01 — Offres</span>
-      <span class="bilingual-en">01 — Offers</span>
-    </div>
+    <div class="section-label">01 — Offres</div>
 
     <div class="block-fr">
       <h2>Deux axes,<br>un seul objectif.</h2>
@@ -589,10 +631,7 @@
 
   <!-- SERVICES -->
   <section id="services">
-    <div class="section-label">
-      <span class="bilingual-fr">02 — Services</span>
-      <span class="bilingual-en">02 — Services</span>
-    </div>
+    <div class="section-label">02 — Services</div>
 
     <div class="block-fr">
       <h2>Comment on aide.</h2>
@@ -661,10 +700,7 @@
 
   <!-- HOW WE WORK -->
   <section id="comment">
-    <div class="section-label">
-      <span class="bilingual-fr">03 — Comment on travaille</span>
-      <span class="bilingual-en">03 — How we work</span>
-    </div>
+    <div class="section-label">03 — Comment on travaille</div>
 
     <div class="block-fr">
       <h2>Senior, impliqué,<br>et flexible.</h2>
@@ -716,10 +752,7 @@
 
   <!-- TEAM -->
   <section id="equipe">
-    <div class="section-label">
-      <span class="bilingual-fr">04 — L'équipe</span>
-      <span class="bilingual-en">04 — The team</span>
-    </div>
+    <div class="section-label">04 — L'équipe</div>
 
     <div class="block-fr">
       <h2>Des praticiens,<br>pas des théoriciens.</h2>
@@ -765,10 +798,7 @@
 
   <!-- AUDIENCE -->
   <section id="audience">
-    <div class="section-label">
-      <span class="bilingual-fr">05 — Pour qui</span>
-      <span class="bilingual-en">05 — Who we help</span>
-    </div>
+    <div class="section-label">05 — Pour qui</div>
 
     <div class="block-fr">
       <h2>Nos clients idéaux.</h2>
@@ -824,7 +854,15 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-left">© 2026 LeetNative</div>
+    <div class="footer-left">
+      <svg class="brand-mark" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="80" height="80" rx="16" fill="#09090b"/>
+        <text x="40" y="48" text-anchor="middle" font-family="Geist Mono, monospace" font-weight="600" font-size="28" fill="#fafafa" letter-spacing="-1">LN</text>
+        <rect x="24" y="58" width="32" height="2" rx="1" fill="#fafafa"/>
+      </svg>
+      <span>© 2026</span>
+      <span class="brand-lockup"><span class="brand-leet">Leet</span><span class="brand-native">Native</span></span>
+    </div>
     <div class="footer-links">
       <a href="https://linkedin.com">LinkedIn</a>
       <a href="mailto:contact@leetnative.com">Contact</a>
